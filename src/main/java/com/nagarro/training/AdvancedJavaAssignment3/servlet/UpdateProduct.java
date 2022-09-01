@@ -11,48 +11,52 @@ import com.nagarro.training.AdvancedJavaAssignment3.models.Products;
 import com.nagarro.training.AdvancedJavaAssignment3.utility.ProductDao;
 
 /**
- * Servlet implementation class AddProduct
+ * Servlet implementation class UpdateProduct
  */
-public class AddProduct extends HttpServlet {
+public class UpdateProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public UpdateProduct() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public AddProduct() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	@SuppressWarnings("deprecation")
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(true);
 
-		Products product = new Products();
-
+		session.removeAttribute("title");
+		session.removeAttribute("quantity");
+		session.removeAttribute("size");
+		session.removeAttribute("image");
+		
+		int id = (int) session.getAttribute("id");
+		
+		Products product = ProductDao.getProduct(id);
+		
 		product.setTitle(request.getParameter("title"));
 		product.setQuantity(Integer.parseInt(request.getParameter("quantity")));
 		product.setSize(Integer.parseInt(request.getParameter("size")));
 		product.setImage(request.getParameter("image"));
 		product.setUser((String) session.getValue("username"));
+		
+		ProductDao.updateProduct(product);
 
-		ProductDao.saveProduct(product);
-
+		
 		response.sendRedirect(request.getContextPath() + "/homepage");
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

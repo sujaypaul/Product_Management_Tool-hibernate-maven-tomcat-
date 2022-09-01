@@ -1,6 +1,8 @@
 package com.nagarro.training.AdvancedJavaAssignment3.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,6 +11,8 @@ import javax.persistence.Table;
 public class Products {
 
 	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	int id;
 	String title;
 	int quantity;
 	int size;
@@ -21,6 +25,14 @@ public class Products {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getQuantity() {
@@ -54,5 +66,4 @@ public class Products {
 	public void setUser(String user) {
 		this.user = user;
 	}
-
 }

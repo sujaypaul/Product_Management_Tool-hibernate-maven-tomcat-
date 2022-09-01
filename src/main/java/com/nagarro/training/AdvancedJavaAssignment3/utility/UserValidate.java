@@ -1,9 +1,7 @@
 package com.nagarro.training.AdvancedJavaAssignment3.utility;
 
-import javax.persistence.TypedQuery;
-
 import org.hibernate.Session;
-//import org.hibernate.query.Query;
+import org.hibernate.query.Query;
 
 import com.nagarro.training.AdvancedJavaAssignment3.models.Users;
 
@@ -13,7 +11,7 @@ public class UserValidate {
 
 		Session session = HibernateUtil.usersSF().openSession();
 		session.beginTransaction();
-		TypedQuery<Users> query = session.createQuery("from Users where uname=:uname", Users.class);
+		Query<Users> query = session.createQuery("from Users where uname=:uname", Users.class);
 		query.setParameter("uname", username);
 
 		Users user=null;

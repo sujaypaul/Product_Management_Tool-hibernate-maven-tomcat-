@@ -5,18 +5,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import com.nagarro.training.AdvancedJavaAssignment3.utility.ProductDao;
 
 /**
- * Servlet implementation class Session
+ * Servlet implementation class DeleteProduct
  */
-public class Session extends HttpServlet {
+public class DeleteProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Session() {
+	public DeleteProduct() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -28,15 +29,9 @@ public class Session extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession(true);
-
-		if (session.getAttribute("username") == null) {
-			response.sendRedirect("index.jsp");
-		} else {
-			@SuppressWarnings({ "deprecation", "unused" })
-			String username = (String) session.getValue("username");
-			request.getRequestDispatcher("ProductsHome.jsp").forward(request, response);
-		}
+		int id = Integer.parseInt(request.getParameter("productId"));
+		ProductDao.deleteProduct(id);
+		response.sendRedirect(request.getContextPath() + "/homepage");
 	}
 
 	/**

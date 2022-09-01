@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@ page import= "com.nagarro.training.AdvancedJavaAssignment3.*" %>
-		<%@ page import= "com.nagarro.training.AdvancedJavaAssignment3.models.*" %>
-	
+<%@ page import="com.nagarro.training.AdvancedJavaAssignment3.*"%>
+<%@ page import="com.nagarro.training.AdvancedJavaAssignment3.models.*"%>
+<%@ page import="com.nagarro.training.AdvancedJavaAssignment3.utility.*"%>
+
+<%@ page import="java.util.List, java.util.ArrayList" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,8 +43,8 @@
 						<form action="logout">
 							<label>Hi <%
 								out.print(currUser.getUname());
-							%>&nbsp&nbsp&nbsp</label> <input
-								type="submit" value="logout">
+							%>&nbsp&nbsp&nbsp
+							</label> <input type="submit" value="logout">
 						</form>
 					</li>
 				</ul>
@@ -55,7 +58,7 @@
 	<div class="container">
 		<div class="row"></div>
 		<div>
-			<form action="update" method="get">
+			<form action="add" method="get">
 				<div class="row pb-1">
 					<div class="col-sm-1">
 						<label for="title">Title</label>
@@ -111,16 +114,31 @@
 					<th scope="col">Actions</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr>
-					<th scope="row">1</th>
-					<td>asdfasdfasdfasdf</td>
-					<td>asdfasdfasdfasdf</td>
-					<td>asdfasdfasdfasdf</td>
-					<td>asdfasdfasdfasdf</td>
-					<td>as asd</td>
-				</tr>
-			</tbody>
+			<%
+				List<Products> list = new ArrayList<Products>();
+			%>
+			<%
+				list = ProductDao.productList((String) session.getAttribute("username"));
+			%>
+			<%
+				int i = 1;
+
+				for (Products p : list) {
+			%>
+			<tr>
+				<th scope="row"><%=i%></th>
+				<td><%=p.getTitle()%></td>
+				<td><%=p.getQuantity()%></td>
+				<td><%=p.getSize()%></td>
+				<td><img src="<%=p.getImage()%>"
+					style="width: 100px; height: 100px;"></td>
+				<td><a href="edit?productId=<%=p.getId()%>">Edit</a> <a
+					href="delete?productId=<%=p.getId()%>">delete</a></td>
+			</tr>
+			<%
+				i++;
+				}
+			%>
 		</table>
 	</div>
 
