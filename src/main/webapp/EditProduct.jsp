@@ -32,7 +32,7 @@ html>
 				</div>
 				<div class="col">
 					<input type="text" name="title" id="title" required
-					value="<%out.print(session.getAttribute("title")); %>">
+						value="<%out.print(session.getAttribute("title"));%>">
 				</div>
 			</div>
 			<div class="row pb-3">
@@ -41,7 +41,7 @@ html>
 				</div>
 				<div class="col">
 					<input type="text" name="quantity" id="quantity" required
-					value="<%out.print(session.getAttribute("quantity")); %>">
+						value="<%out.print(session.getAttribute("quantity"));%>">
 				</div>
 			</div>
 			<div class="row pb-3">
@@ -50,7 +50,7 @@ html>
 				</div>
 				<div class="col">
 					<input type="number" name="size" id="size" required
-					value="<%out.print(session.getAttribute("size")); %>">
+						value="<%out.print(session.getAttribute("size"));%>">
 				</div>
 			</div>
 			<div class="row pb-3">
@@ -59,7 +59,7 @@ html>
 				</div>
 				<div class="col">
 					<input type="file" name="image" id="image" required
-					value="<%out.print(session.getAttribute("image")); %>">
+						value="<%out.print(session.getAttribute("image"));%>">
 				</div>
 			</div>
 
@@ -70,9 +70,15 @@ html>
 
 					<input type="submit" value="Save Changes" class="col">
 				</div>
+
 			</div>
 
 		</form>
+		<div class="container">
+			<form method="get" action="homepage" style="width: 50%;" class="row-sm-2 justity-self-end">
+				<input type="submit" value="Cancel">
+			</form>
+		</div>
 	</div>
 
 </body>

@@ -4,7 +4,7 @@
 <%@ page import="com.nagarro.training.AdvancedJavaAssignment3.models.*"%>
 <%@ page import="com.nagarro.training.AdvancedJavaAssignment3.utility.*"%>
 
-<%@ page import="java.util.List, java.util.ArrayList" %>
+<%@ page import="java.util.List, java.util.ArrayList"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -127,13 +127,20 @@
 			%>
 			<tr>
 				<th scope="row"><%=i%></th>
-				<td><%=p.getTitle()%></td>
-				<td><%=p.getQuantity()%></td>
-				<td><%=p.getSize()%></td>
-				<td><img src="<%=p.getImage()%>"
+				<td style="text-align: center; vertical-align: middle;"><%=p.getTitle()%></td>
+				<td style="text-align: center; vertical-align: middle;"><%=p.getQuantity()%></td>
+				<td style="text-align: center; vertical-align: middle;"><%=p.getSize()%></td>
+				<td style="text-align: center; vertical-align: middle;"><img src="<%=p.getImage()%>"
 					style="width: 100px; height: 100px;"></td>
-				<td><a href="edit?productId=<%=p.getId()%>">Edit</a> <a
-					href="delete?productId=<%=p.getId()%>">delete</a></td>
+				<td style="text-align: center; vertical-align: middle;">
+					<a href="edit?productId=<%=p.getId()%>"> 
+						<img src="C:\Users\sujaypaul\Desktop\Assignments\sujay-paul\Advanced-Java-Assignment-3\src\main\webapp\icons\edit.jpg" 
+							style="width: 30px; height: 30px;" alt="edit"></a>
+					<a href="delete?productId=<%=p.getId()%>">
+						<img src="C:\Users\sujaypaul\Desktop\Assignments\sujay-paul\Advanced-Java-Assignment-3\src\main\webapp\icons\delete.jpg" 
+							style="width: 30px; height: 30px;" alt="delete"></a>
+
+					</a></td>
 			</tr>
 			<%
 				i++;
