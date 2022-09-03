@@ -40,9 +40,17 @@ public class EditProduct extends HttpServlet {
 		session.putValue("title", product.getTitle());
 		session.putValue("quantity", product.getQuantity());
 		session.putValue("size", product.getSize());
-		session.putValue("image", product.getImage());
+//		session.putValue("image", product.getImage());
 		
-		request.getRequestDispatcher("EditProduct.jsp").forward(request, response);
+
+		if (session.getAttribute("username") == null) {
+			response.sendRedirect("index.jsp");
+		} else {
+			@SuppressWarnings({ "deprecation", "unused" })
+			String username = (String) session.getValue("username");
+			request.getRequestDispatcher("EditProduct.jsp").forward(request, response);
+		}
+		
 
 
 

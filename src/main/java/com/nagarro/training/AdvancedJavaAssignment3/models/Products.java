@@ -1,9 +1,13 @@
 package com.nagarro.training.AdvancedJavaAssignment3.models;
 
+import java.util.Base64;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -16,7 +20,17 @@ public class Products {
 	String title;
 	int quantity;
 	int size;
-	String image;
+	@Lob
+    @Column(columnDefinition="BLOB")
+	byte[] image;
+	
+//	String productImage;
+	public String getProductImage() {
+    	String productImage = Base64.getEncoder().encodeToString(this.image);
+		return productImage;
+	}
+
+
 	String user;
 
 	public String getTitle() {
@@ -51,11 +65,11 @@ public class Products {
 		this.size = size;
 	}
 
-	public String getImage() {
+	public byte[] getImage() {
 		return image;
 	}
 
-	public void setImage(String image) {
+	public void setImage(byte[] image) {
 		this.image = image;
 	}
 

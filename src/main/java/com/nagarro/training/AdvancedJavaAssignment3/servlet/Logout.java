@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.nagarro.training.AdvancedJavaAssignment3.models.Constants;
+
 /**
  * Servlet implementation class Logout
  */
@@ -31,6 +33,7 @@ public class Logout extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		session.removeAttribute("username");
 		session.invalidate();
+		Constants.dbImageLimit=0;
 		response.sendRedirect(request.getContextPath() + "/");
 	}
 

@@ -54,11 +54,10 @@
 	<div class="container">
 		<h5>Please enter product details to add to stock</h5>
 	</div>
-
 	<div class="container">
 		<div class="row"></div>
 		<div>
-			<form action="add" method="get">
+			<form action="add" method="POST" >
 				<div class="row pb-1">
 					<div class="col-sm-1">
 						<label for="title">Title</label>
@@ -130,7 +129,7 @@
 				<td style="text-align: center; vertical-align: middle;"><%=p.getTitle()%></td>
 				<td style="text-align: center; vertical-align: middle;"><%=p.getQuantity()%></td>
 				<td style="text-align: center; vertical-align: middle;"><%=p.getSize()%></td>
-				<td style="text-align: center; vertical-align: middle;"><img src="<%=p.getImage()%>"
+				<td style="text-align: center; vertical-align: middle;"><img src="data:image/jpg;base64,<%=p.getProductImage()%>"
 					style="width: 100px; height: 100px;"></td>
 				<td style="text-align: center; vertical-align: middle;">
 					<a href="edit?productId=<%=p.getId()%>"> 
@@ -140,13 +139,15 @@
 						<img src="C:\Users\sujaypaul\Desktop\Assignments\sujay-paul\Advanced-Java-Assignment-3\src\main\webapp\icons\delete.jpg" 
 							style="width: 30px; height: 30px;" alt="delete"></a>
 
-					</a></td>
+					</td>
 			</tr>
 			<%
 				i++;
 				}
 			%>
 		</table>
+		<div class="container">Size of product table is <%=Constants.dbImageLimit%> MB</div>
+		
 	</div>
 
 </body>

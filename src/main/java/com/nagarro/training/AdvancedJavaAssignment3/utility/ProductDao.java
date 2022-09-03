@@ -6,16 +6,19 @@ import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.nagarro.training.AdvancedJavaAssignment3.models.Constants;
 import com.nagarro.training.AdvancedJavaAssignment3.models.Products;
 
 public class ProductDao {
 
-	public static void saveProduct(Products product) {
+	public static void saveProduct(Products product,float size) {
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.productsSF().openSession()) {
 			transaction = session.beginTransaction();
 			session.save(product);
 			transaction.commit();
+			
+
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
@@ -32,6 +35,16 @@ public class ProductDao {
 		
 
 		List<Products> productlist = q.list();
+		
+		Constants.dbImageLimit = 0;
+		
+		for(Products p : productlist) {
+			
+			Constants.dbImageLimit += (p.getImage().length / Constants.byteunit);
+			System.out.println(p.getImage().length);
+			System.out.println(Constants.dbImageLimit);
+
+		}
 		return productlist;
 	}
 	
@@ -46,6 +59,9 @@ public class ProductDao {
             Products product= session.get(Products.class, id);
             if (product != null) {
                 session.delete(product);
+                
+//    			Constants.dbImageLimit -= (product.getImage().length / Constants.byteunit);
+
                 System.out.println("user is deleted");
             }
 
@@ -79,12 +95,19 @@ public class ProductDao {
         return product;
     }
 	
-	public static void updateProduct(Products product) {
+	public static void updateProduct(Products product,float size) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.productsSF().openSession()) {
+        	
+
             transaction = session.beginTransaction();
             session.update(product);
             transaction.commit();
+            
+            
+//			Constants.dbImageLimit += (size / Constants.byteunit);
+
+            
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();

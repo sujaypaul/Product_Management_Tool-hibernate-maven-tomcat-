@@ -58,8 +58,7 @@ html>
 					<label for="image">Image</label>
 				</div>
 				<div class="col">
-					<input type="file" name="image" id="image" required
-						value="<%out.print(session.getAttribute("image"));%>">
+					<input type="file" name="image" id="image" required>
 				</div>
 			</div>
 
