@@ -69,6 +69,12 @@ public class UpdateProduct extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/homepage");
 
 			System.out.println(imagesize.length);
+			
+			
+			session.removeAttribute("title");
+			session.removeAttribute("quantity");
+			session.removeAttribute("size");
+			session.removeAttribute("image");
 
 		} else {
 			response.getWriter().print(

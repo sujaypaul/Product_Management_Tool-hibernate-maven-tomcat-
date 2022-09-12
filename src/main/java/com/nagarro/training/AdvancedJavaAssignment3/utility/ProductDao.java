@@ -21,9 +21,10 @@ public class ProductDao {
 
 		} catch (Exception e) {
 			if (transaction != null) {
+				System.out.println(e);
 				transaction.rollback();
 			}
-			e.printStackTrace();
+			System.out.println(e);
 		}
 	}
 	
